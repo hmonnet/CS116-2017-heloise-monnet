@@ -23,6 +23,9 @@ class Neuron {
 //UPDATE OF THE NEURON STATE AT TIME t+T
 		void updatePotential(double h, double C, double tau, double Iext);
 		
+//RETURN TRUE IF THE NEURON IS SPIKING
+		bool isSpiking(double Vth);
+		
 //STORAGE OF SPIKE TIMES IN A FILE
 		void storeSpike();
 		

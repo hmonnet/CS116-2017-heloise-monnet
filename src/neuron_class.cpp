@@ -36,6 +36,15 @@ void Neuron::updatePotential(double h, double C, double tau, double Iext) {
     potential_ = exp(-h/tau)*potential_ + Iext*R*(1-exp(-h/tau));
 }
   
+//RETURN TRUE IF THE NEURON IS SPIKING
+		bool Neuron::isSpiking(double Vth) {
+			if(potential_ > Vth) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+  
 //STORAGE OF SPIKE TIMES IN A FILE
 void Neuron::storeSpike() {
 	ofstream sortie;
