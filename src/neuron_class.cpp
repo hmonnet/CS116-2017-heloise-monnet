@@ -1,5 +1,6 @@
 #include "neuron_class.hpp"
 #include <iostream>
+#include <fstream>
 #include <cmath>
 using namespace std;
 
@@ -30,10 +31,23 @@ void Neuron::setTime(double time) {
 }
 
 //UPDATE OF THE NEURON STATE AT TIME t+T
-  void Neuron::updatePotential(double h, double C, double tau, double Iext) {
+void Neuron::updatePotential(double h, double C, double tau, double Iext) {
     double R(tau / C);
     potential_ = exp(-h/tau)*potential_ + Iext*R*(1-exp(-h/tau));
-  }
+}
+  
+//STORAGE OF SPIKE TIMES IN A FILE
+void Neuron::storeSpike() {
+	ofstream sortie;
+	sortie.open("data.txt", ios::out|ios::app);
+	if(sortie.fail()) {
+		cout << "Error. Impossible to write in fichier.txt." << endl;
+	} else {
+		sortie << "Time: " << Neuron::getTime() << "  Potential: " << Neuron::getPotential() << endl;
+		cout << "A spike occured, the neuron enters in a refractory period (potential: 0)." << endl;
+	}
+	sortie.close();
+}
   
 //DESTRUCTOR
 Neuron::~Neuron() {

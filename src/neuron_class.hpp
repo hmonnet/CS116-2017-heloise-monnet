@@ -23,6 +23,9 @@ class Neuron {
 //UPDATE OF THE NEURON STATE AT TIME t+T
 		void updatePotential(double h, double C, double tau, double Iext);
 		
+//STORAGE OF SPIKE TIMES IN A FILE
+		void storeSpike();
+		
 //DESTRUCTOR
 		~Neuron();
 };

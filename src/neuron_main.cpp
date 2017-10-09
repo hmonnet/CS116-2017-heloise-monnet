@@ -1,6 +1,5 @@
 #include "neuron_class.cpp"
 #include <iostream>
-#include <fstream>
 using namespace std;
 
 int main() {
@@ -68,18 +67,7 @@ int main() {
       cout << "Time: " << neuron.getTime() << "  Potential: " << neuron.getPotential() << endl;
       if(neuron.getPotential() > neuronParams.Vth) {
         neuron.setNbSpikes(neuron.getNbSpikes() + 1);
-
-//STORAGE OF SPIKE TIMES IN A FILE      
-        ofstream sortie;
-        sortie.open("fichier.txt", ios::out|ios::app);
-        if(sortie.fail()) {
-          cout << "Error. Impossible to write in fichier.txt." << endl;
-        } else {
-          sortie << "A spike occured at time " << neuron.getTime() << endl;
-          cout << "A spike occured, the neuron enters in a refractory period (potential: 0)." << endl;
-        }
-        sortie.close();
-        
+		neuron.storeSpike();
         isRefractory = (neuronParams.tauref / (n*neuronParams.h));
       }
     }
