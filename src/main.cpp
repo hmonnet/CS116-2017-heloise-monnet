@@ -37,11 +37,11 @@ int main() {
   cout << "Iext = " << flush;
   cin >> Iext;
   while(cin.fail()) {
-    cout << "Error, you have to enter a double." << endl;
-    cin.clear();
-    cin.ignore(256,'\n');
-    cout << "Iext = " << flush;
-    cin >> Iext;
+	cout << "Error, you have to enter a double." << endl;
+	cin.clear();
+	cin.ignore(256,'\n');
+	cout << "Iext = " << flush;
+	cin >> Iext;
   }
   
 //SIMULATION FROM tstart TO tstop

@@ -18,7 +18,7 @@ class Network {
 		double getClock() const;
 		void setClock(double clock);
 				
-//SIMULATION LOOP FOR neuron1_ AND neuron2_ IN TAKING THE CONNECTION BETWEEN THEM INTO ACCOUNT
+//SIMULATION LOOP FOR neuron1_ AND neuron2_ IN TAKING THE CONNECTION BETWEEN THEM (AND THE DELAY) INTO ACCOUNT
 		void simulationLoop(double tstart, double tstop, double Iext);
 		
 //STORAGE OF SPIKE TIMES OF neuron1_ AND neuron2_ IN A FILE
