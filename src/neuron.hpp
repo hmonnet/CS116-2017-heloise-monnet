@@ -1,9 +1,9 @@
 #ifndef NEURON_HPP
 #define NEURON_HPP
-#include "network_class.hpp" 
 
 class Neuron {
 	private:
+		int id_;
 		double potential_;
 		int nbSpikes_;
 		int isRefractory_;
@@ -18,12 +18,11 @@ class Neuron {
 		const double tauref_=2.0;
 		const double Vreset_=0.0;
 		const double Vth_=20.0;
-		const double J_=1.0; //VALEUR??
+		const double J_=0.1; //VALEUR??
 		
 	public:
-	
 //CONSTRUCTOR
-		Neuron(double potential, int nbSpikes, int isRefractory, double time, double Iext);
+		Neuron(int id);
 		
 //GETTERS AND SETTERS
 		double getPotential() const;
@@ -31,6 +30,7 @@ class Neuron {
 		double getTime() const;
 		double getN() const;
 		double getH() const;
+		double getJ() const;
 		
 		void setPotential(double potential);
 		void setNbSpikes(int nbSpikes);
@@ -42,14 +42,15 @@ class Neuron {
 //RETURN TRUE IF THE NEURON IS SPIKING
 		bool isSpiking();
 		
+//SIMULATION LOOP OF THE NEURON
+		 void simulationLoop(double clock, double Iext);
+		
 //STORAGE OF SPIKE TIMES IN A FILE
 		void storeSpike();
-		
-//SIMULATION LOOP OF THE NEURON
-		 void simulationLoop(double tstart, double tstop, double Iext);
-		
+				
 //DESTRUCTOR
 		~Neuron();
+		
 };
 
 #endif

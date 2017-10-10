@@ -1,13 +1,13 @@
-#include "neuron_class.hpp"
+#include "neuron.hpp"
 #include <iostream>
 #include <fstream>
 #include <cmath>
 using namespace std;
 
 //CONSTRUCTOR
-  Neuron::Neuron(double potential = 0.0, int nbSpikes = 0, int isRefractory = 0, double time = 0.0, double Iext = 0.0)
-  : potential_(potential), nbSpikes_(nbSpikes), isRefractory_(isRefractory), time_(time), Iext_(Iext)
-  {}
+Neuron::Neuron(int id)
+: id_(id), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0)
+{}
 
 //GETTERS AND SETTERS
 double Neuron::getPotential() const {
@@ -25,6 +25,9 @@ double Neuron::getN() const {
 double Neuron::getH() const {
 	return h_;
 }
+double Neuron::getJ() const {
+	return J_;
+}
   
 void Neuron::setPotential(double potential) {
   potential_ = potential;
@@ -39,18 +42,37 @@ void Neuron::setTime(double time) {
 //UPDATE OF THE NEURON STATE AT TIME t+T
 void Neuron::updatePotential(double Iext) {
     double R(tau_ / C_);
-    potential_ = exp(-h_/tau_)*potential_ + Iext*R*(1-exp(-h_/tau_)) + J_;
+    potential_ = exp(-h_/tau_)*potential_ + Iext*R*(1-exp(-h_/tau_));
 }
   
 //RETURN TRUE IF THE NEURON IS SPIKING
-		bool Neuron::isSpiking() {
-			if(potential_ > Vth_) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-  
+bool Neuron::isSpiking() {
+	if(potential_ > Vth_) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+//SIMULATION LOOP OF THE NEURON
+void Neuron::simulationLoop(double clock, double Iext) {
+	time_ = clock;
+	Iext_ = Iext;
+	if(isRefractory_ > 0) {
+	  --isRefractory_;
+	  potential_ = Vreset_;
+	} else {            
+	  updatePotential(Iext);
+	  cout << "Time: " << time_ << "  Potential neuron " << id_ << " : " << potential_ << endl;
+	  if(isSpiking()) {
+		nbSpikes_ += 1;
+		storeSpike();
+		isRefractory_ = (tauref_ / (n_*h_));
+	  }
+	}
+
+}
+
 //STORAGE OF SPIKE TIMES IN A FILE
 void Neuron::storeSpike() {
 	ofstream sortie;
@@ -58,31 +80,10 @@ void Neuron::storeSpike() {
 	if(sortie.fail()) {
 		cout << "Error. Impossible to write in fichier.txt." << endl;
 	} else {
-		sortie << "Time: " << time_ << "  Potential: " << potential_ << endl;
-		cout << "A spike occured, the neuron enters in a refractory period (potential: 0)." << endl;
+		sortie << "Time: " << time_ << "  Potential neuron " << id_ << " : " << potential_ << endl;
+		cout << "A spike occured, the neuron " << id_ << " enters in a refractory period (potential: 0)." << endl;
 	}
 	sortie.close();
-}
-
-//SIMULATION LOOP OF THE NEURON
-void Neuron::simulationLoop(double tstart, double tstop, double Iext) {
-	time_ = tstart;
-	while(time_ < tstop) {
-		Iext_ = Iext;
-		if(isRefractory_ > 0) {
-		  --isRefractory_;
-		  potential_ = Vreset_;
-		} else {            
-		  updatePotential(Iext);
-		  cout << "Time: " << time_ << "  Potential: " << potential_ << endl;
-		  if(isSpiking()) {
-			nbSpikes_ += 1;
-			storeSpike();
-			isRefractory_ = (tauref_ / (n_*h_));
-		  }
-		}
-		time_ += n_*h_;
-	}
 }
   
 //DESTRUCTOR

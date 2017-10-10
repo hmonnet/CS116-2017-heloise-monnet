@@ -1,10 +1,11 @@
-#include "neuron_class.cpp"
+#include "network.cpp"
+#include "neuron.cpp"
 #include <iostream>
 using namespace std;
 
 int main() {
 //DECLARATION OF THE VARIABLES
-  Neuron neuron;
+  Network network;
   
   double tstart;
   double tstop;
@@ -34,7 +35,7 @@ int main() {
   
   cout << "Enter the external current." << endl;
   cout << "Iext = " << flush;
-  cin >> Iext; //ou 0 si on n'est pas dans le while?
+  cin >> Iext;
   while(cin.fail()) {
     cout << "Error, you have to enter a double." << endl;
     cin.clear();
@@ -44,7 +45,7 @@ int main() {
   }
   
 //SIMULATION FROM tstart TO tstop
-  neuron.simulationLoop(tstart, tstop, Iext);
+  network.simulationLoop(tstart, tstop, Iext);
   
   return 0;
 }
