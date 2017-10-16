@@ -1,6 +1,7 @@
-#include "network.cpp"
-#include "neuron.cpp"
+#include "network.hpp"
+#include "neuron.hpp"
 #include <iostream>
+
 using namespace std;
 
 int main() {

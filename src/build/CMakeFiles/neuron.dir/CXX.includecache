@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/main.cpp
+network.hpp
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/network.hpp
+neuron.hpp
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.hpp
+iostream
+-
+
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/network.cpp
+network.hpp
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/network.hpp
+iostream
+-
+fstream
+-
+cmath
+-
+
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/network.hpp
+neuron.hpp
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.hpp
+
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.cpp
+neuron.hpp
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.hpp
+iostream
+-
+fstream
+-
+cmath
+-
+
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.hpp
+vector
+-
+
