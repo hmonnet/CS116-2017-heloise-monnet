@@ -6,7 +6,7 @@ using namespace std;
 
 //CONSTRUCTOR
 Network::Network()
-: neuron1_(1, 2), neuron2_(2, 3), clock_(0.0)
+: neuron1_(1, 1.5), neuron2_(2, 1.5), clock_(0.0)
 {}
 		
 //GETTER AND SETTER FOR clock_		
@@ -21,18 +21,22 @@ void Network::setClock(double clock) {
 //SIMULATION LOOP neuron1_ AND neuron2_ IN TAKING THE CONNECTION BETWEEN THEM  (AND THE DELAY) INTO ACCOUNT
 void Network::simulationLoop(double tstart, double tstop, double Iext) {
 	clock_ = tstart;
+	neuron1_.setTime(tstart);
+	neuron2_.setTime(tstart);
 	
-	int a(round(clock_/neuron2_.getH()));
-	int b(round(clock_/neuron2_.getH()));
-	
+	int a;
+	int b;
+		
 	while(clock_ < tstop) {
-		neuron1_.simulationLoop(clock_, Iext);
+		neuron1_.simulationLoop(Iext);
 		if(neuron1_.isSpiking()) {
-			neuron2_.setBuffer((a + neuron1_.getDelay()) % 4);
+			a = floor((clock_ + neuron1_.getDelay())/neuron1_.getH());
+			neuron2_.setBuffer(a % 16, neuron1_.getJ());
 		}
-		neuron2_.simulationLoop(clock_, Iext);
-		if(neuron2_.isSpiking()) {
-			neuron1_.setBuffer((b + neuron2_.getDelay()) % 4);
+		neuron2_.simulationLoop(0.0);
+		if(neuron2_.isSpiking()) {	
+			b = floor((clock_ + neuron2_.getDelay())/neuron1_.getH());
+			neuron1_.setBuffer(b % 16, neuron2_.getJ());
 		}
 		clock_ += neuron1_.getN()*neuron1_.getH();		
 	}	

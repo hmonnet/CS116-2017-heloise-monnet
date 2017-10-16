@@ -1,17 +1,17 @@
 #ifndef NEURON_HPP
 #define NEURON_HPP
-#include <array>
+#include <vector>
 
 class Neuron {
 	private:
 		int id_;
-		int delay_;
+		double delay_;
 		double potential_;
 		int nbSpikes_;
 		int isRefractory_;
 		double time_;
 		double Iext_;
-		std::array<double, 4> buffer_;
+		std::vector<double> buffer_;
 	
 //NEURON PARAMETERS		
 		const double n_=1.0;
@@ -25,13 +25,13 @@ class Neuron {
 		
 	public:
 //CONSTRUCTOR
-		Neuron(int id, int delay);
+		Neuron(int id, double delay);
 		
 //GETTERS AND SETTERS
 		double getPotential() const;
 		int getNbSpikes() const;
 		double getTime() const;
-		int getDelay() const;
+		double getDelay() const;
 		double getN() const;
 		double getH() const;
 		double getJ() const;
@@ -39,7 +39,7 @@ class Neuron {
 		void setPotential(double potential);
 		void setNbSpikes(int nbSpikes);
 		void setTime(double time);
-		void setBuffer(int position);
+		void setBuffer(int position, double J);
 		
 //UPDATE OF THE NEURON STATE AT TIME t+T
 		void updatePotential(double Iext);
@@ -48,7 +48,7 @@ class Neuron {
 		bool isSpiking();
 		
 //SIMULATION LOOP OF THE NEURON
-		 void simulationLoop(double clock, double Iext);
+		 void simulationLoop(double Iext);
 		
 //STORAGE OF SPIKE TIMES IN A FILE
 		void storeSpike();

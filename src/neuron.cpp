@@ -5,8 +5,8 @@
 using namespace std;
 
 //CONSTRUCTOR
-Neuron::Neuron(int id, int delay)
-: id_(id), delay_(delay), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_({0, 0, 0, 0})
+Neuron::Neuron(int id, double delay)
+: id_(id), delay_(delay), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
 {}
 
 //GETTERS AND SETTERS
@@ -19,7 +19,7 @@ int Neuron::getNbSpikes() const {
 double Neuron::getTime() const {
   return time_;
 }
-int Neuron::getDelay() const {
+double Neuron::getDelay() const {
 	return delay_;
 }
 double Neuron::getN() const {
@@ -41,16 +41,16 @@ void Neuron::setNbSpikes(int nbSpikes) {
 void Neuron::setTime(double time) {
   time_ = time;
 }
-void Neuron::setBuffer(int position) {
-	buffer_[position] += J_;
+void Neuron::setBuffer(int position, double J) {
+	buffer_[position] += J;
 }
 
 //UPDATE OF THE NEURON STATE AT TIME t+T
 void Neuron::updatePotential(double Iext) {
     double R(tau_ / C_);
     int a((time_/h_));
-    potential_ = exp(-h_/tau_)*potential_ + Iext*R*(1-exp(-h_/tau_)) + buffer_[a % 4];
-    buffer_[a % 4] = 0.0;
+    potential_ = exp(-h_/tau_)*potential_ + Iext*R*(1-exp(-h_/tau_)) + buffer_[a % 16];
+    buffer_[a % 16] = 0.0;
 }
   
 //RETURN TRUE IF THE NEURON IS SPIKING
@@ -63,8 +63,7 @@ bool Neuron::isSpiking() {
 }
 
 //SIMULATION LOOP OF THE NEURON
-void Neuron::simulationLoop(double clock, double Iext) {
-	time_ = clock;
+void Neuron::simulationLoop(double Iext) {
 	Iext_ = Iext;
 	if(isRefractory_ > 0) {
 	  --isRefractory_;
@@ -78,7 +77,7 @@ void Neuron::simulationLoop(double clock, double Iext) {
 		isRefractory_ = (tauref_ / (n_*h_));
 	  }
 	}
-
+	time_ += n_*h_;
 }
 
 //STORAGE OF SPIKE TIMES IN A FILE
