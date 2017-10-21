@@ -1,2 +1,16 @@
 Time: 13.8  Potential neuron 1 : 20.037
 Time: 13.8  Potential neuron 1 : 20.037
+Time: 92.3  Potential neuron 0 : 20.001
+Time: 186.7  Potential neuron 0 : 20.001
+Time: 92.3  Potential neuron 1 : 20.001
+Time: 186.7  Potential neuron 1 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 0 : 20.001
+Time: 192.3  Potential neuron 1 : 20.001

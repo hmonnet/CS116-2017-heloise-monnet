@@ -1,0 +1,1 @@
+/usr/bin/c++   -W -Wall -pedantic -std=c++11   CMakeFiles/project_test.dir/neuron.cpp.o CMakeFiles/project_test.dir/network.cpp.o CMakeFiles/project_test.dir/project_test.cpp.o  -o project_test -rdynamic -lneuron.cpp -lnetwork.cpp -lproject_test.cpp 

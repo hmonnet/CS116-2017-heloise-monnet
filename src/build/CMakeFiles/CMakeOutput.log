@@ -574,3 +574,18 @@ make[1]: Leaving directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-helois
     Feature record: CXX_FEATURE:0cxx_variable_templates
     Feature record: CXX_FEATURE:0cxx_variadic_macros
     Feature record: CXX_FEATURE:0cxx_variadic_templates
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec4193081408/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec4193081408.dir/build.make CMakeFiles/cmTryCompileExec4193081408.dir/build
+make[1]: Entering directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/build/CMakeFiles/CMakeTmp'
+/usr/local/bin/cmake -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4193081408.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec4193081408.dir/CheckIncludeFiles.c.o   -c /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec4193081408
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4193081408.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec4193081408.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec4193081408 -rdynamic 
+make[1]: Leaving directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/build/CMakeFiles/CMakeTmp'
+
+
