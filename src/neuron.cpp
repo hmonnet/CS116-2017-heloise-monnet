@@ -4,12 +4,16 @@
 #include <cmath>
 using namespace std;
 
-//CONSTRUCTOR
+//CONSTRUCTORs
+Neuron::Neuron() 
+: id_(0), delay_(0), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
+{}
+
 Neuron::Neuron(int id, double delay)
 : id_(id), delay_(delay), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
 {}
 
-//GETTERS AND SETTERS
+//GETTERS
 double Neuron::getPotential() const {
   return potential_;
 }
@@ -31,7 +35,8 @@ double Neuron::getH() const {
 double Neuron::getJ() const {
 	return J_;
 }
-  
+
+//SETTERS
 void Neuron::setPotential(double potential) {
   potential_ = potential;
 }

@@ -24,10 +24,11 @@ class Neuron {
 		const double J_=0.1;
 		
 	public:
-//CONSTRUCTOR
+//CONSTRUCTORS
+		Neuron();
 		Neuron(int id, double delay);
 		
-//GETTERS AND SETTERS
+//GETTERS
 		double getPotential() const;
 		int getNbSpikes() const;
 		double getTime() const;
@@ -35,7 +36,8 @@ class Neuron {
 		double getN() const;
 		double getH() const;
 		double getJ() const;
-		
+
+//SETTERS		
 		void setPotential(double potential);
 		void setNbSpikes(int nbSpikes);
 		void setTime(double time);

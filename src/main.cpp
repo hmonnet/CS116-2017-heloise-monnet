@@ -46,6 +46,8 @@ int main() {
   }
   
 //SIMULATION FROM tstart TO tstop
+  network.addNeuron();
+  network.addNeuron();
   network.simulationLoop(tstart, tstop, Iext);
   
   return 0;
