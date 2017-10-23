@@ -19,7 +19,11 @@ network.hpp
 /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/network.hpp
 iostream
 -
+iomanip
+-
 fstream
+-
+random
 -
 cmath
 -
@@ -35,9 +39,13 @@ neuron.hpp
 /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.hpp
 iostream
 -
+iomanip
+-
 fstream
 -
 cmath
+-
+random
 -
 
 /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/neuron.hpp

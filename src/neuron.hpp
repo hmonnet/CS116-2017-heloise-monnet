@@ -5,7 +5,7 @@
 class Neuron {
 	private:
 		int id_;
-		double delay_;
+		double J_;
 		double potential_;
 		int nbSpikes_;
 		int isRefractory_;
@@ -21,12 +21,12 @@ class Neuron {
 		const double tauref_=2.0;
 		const double Vreset_=0.0;
 		const double Vth_=20.0;
-		const double J_=0.1;
+		double delay_=1.5;
 		
 	public:
 //CONSTRUCTORS
 		Neuron();
-		Neuron(int id, double delay);
+		Neuron(int id, double J);
 		
 //GETTERS
 		double getPotential() const;
@@ -37,20 +37,23 @@ class Neuron {
 		double getH() const;
 		double getJ() const;
 
-//SETTERS		
+//SETTERS	
+		void setId(int id);
 		void setPotential(double potential);
 		void setNbSpikes(int nbSpikes);
 		void setTime(double time);
+		void setIext(double Iext);
+		void setJ(double J);
 		void setBuffer(int position, double J);
 		
 //UPDATE OF THE NEURON STATE AT TIME t+T
-		void updatePotential(double Iext);
+		void updatePotential();
 		
 //RETURN TRUE IF THE NEURON IS SPIKING
 		bool isSpiking();
 		
 //SIMULATION LOOP OF THE NEURON
-		 void simulationLoop(double Iext);
+		 void simulationLoop(int nbSimulationLoops);
 		
 //STORAGE OF SPIKE TIMES IN A FILE
 		void storeSpike();

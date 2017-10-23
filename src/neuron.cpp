@@ -1,16 +1,18 @@
 #include "neuron.hpp"
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <cmath>
+#include <random>
 using namespace std;
 
 //CONSTRUCTORs
 Neuron::Neuron() 
-: id_(0), delay_(0), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
+: id_(0), J_(0.1), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
 {}
 
-Neuron::Neuron(int id, double delay)
-: id_(id), delay_(delay), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
+Neuron::Neuron(int id, double J) 
+: id_(id), J_(J), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
 {}
 
 //GETTERS
@@ -37,6 +39,9 @@ double Neuron::getJ() const {
 }
 
 //SETTERS
+void Neuron::setId(int id) {
+	id_ = id;
+}
 void Neuron::setPotential(double potential) {
   potential_ = potential;
 }
@@ -46,15 +51,26 @@ void Neuron::setNbSpikes(int nbSpikes) {
 void Neuron::setTime(double time) {
   time_ = time;
 }
+void Neuron::setIext(double Iext) {
+  Iext_ = Iext;
+}
+void Neuron::setJ(double J) {
+	J_ = J;
+}
 void Neuron::setBuffer(int position, double J) {
 	buffer_[position] += J;
 }
 
 //UPDATE OF THE NEURON STATE AT TIME t+T
-void Neuron::updatePotential(double Iext) {
+void Neuron::updatePotential() {
     double R(tau_ / C_);
     int a((time_/h_));
-    potential_ = exp(-h_/tau_)*potential_ + Iext*R*(1-exp(-h_/tau_)) + buffer_[a % 16];
+    
+	random_device rd;
+	mt19937 gen(rd());
+	poisson_distribution<> dis(0.2); //v_thr*J*h*C_E=0.02*0.1*0.1*1000=0.2
+    
+    potential_ = exp(-h_/tau_)*potential_ + Iext_*R*(1-exp(-h_/tau_)) + buffer_[a % 16] + dis(gen);
     buffer_[a % 16] = 0.0;
 }
   
@@ -68,21 +84,21 @@ bool Neuron::isSpiking() {
 }
 
 //SIMULATION LOOP OF THE NEURON
-void Neuron::simulationLoop(double Iext) {
-	Iext_ = Iext;
-	if(isRefractory_ > 0) {
-	  --isRefractory_;
-	  potential_ = Vreset_;
-	} else {            
-	  updatePotential(Iext);
-	  cout << "Time: " << time_ << "  Potential neuron " << id_ << " : " << potential_ << endl;
-	  if(isSpiking()) {
-		nbSpikes_ += 1;
-		storeSpike();
-		isRefractory_ = (tauref_ / (n_*h_));
-	  }
+void Neuron::simulationLoop(int nbSimulationLoops) {
+	for(int i(0); i < nbSimulationLoops; ++i) {
+		if(isRefractory_ > 0) {
+		  --isRefractory_;
+		  potential_ = Vreset_;
+		} else {            
+		  updatePotential();
+		  if(isSpiking()) {
+			nbSpikes_ += 1;
+			storeSpike();
+			isRefractory_ = (tauref_ / (n_*h_));
+		  }
+		}
+		time_ += n_*h_;
 	}
-	time_ += n_*h_;
 }
 
 //STORAGE OF SPIKE TIMES IN A FILE
@@ -93,7 +109,7 @@ void Neuron::storeSpike() {
 		cout << "Error. Impossible to write in fichier.txt." << endl;
 	} else {
 		sortie << "Time: " << time_ << "  Potential neuron " << id_ << " : " << potential_ << endl;
-		cout << "A spike occured, the neuron " << id_ << " enters in a refractory period (potential: 0)." << endl;
+		cout << "A spike occured at time " << time_ << ", the neuron " << id_ << " enters in a refractory period (potential: 0)." << endl;
 	}
 	sortie.close();
 }

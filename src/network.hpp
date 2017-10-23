@@ -7,7 +7,9 @@ class Neuron; //pre-declaration
 
 class Network {
 	private:
-		std::vector <Neuron*> network_;
+		std::vector <Neuron*> excitatoryNeurons_;
+		std::vector <Neuron*> inhibitoryNeurons_;
+		std::vector<std::vector<int>> connexions_;
 		double clock_;
 		
 	public:
@@ -18,11 +20,11 @@ class Network {
 		double getClock() const;
 		void setClock(double clock);
 		
-//ADD A NEURON IN THE NETWORK
-		void addNeuron();
+//DISTRIBUTION OF THE CONNECTIONS BETWEEN ALL THE EXCITATORY AND INHIBITORY NEURONS
+		void connexions();
 				
-//SIMULATION LOOP FOR neuron1_ AND neuron2_ IN TAKING THE CONNECTION BETWEEN THEM (AND THE DELAY) INTO ACCOUNT
-		void simulationLoop(double tstart, double tstop, double Iext);
+//SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
+		void simulationLoop(double tstart, double tstop);
 
 //DESTROY ALL THE NEURONS OF THE NETWORK
 		void destructionNeurons();

@@ -6,49 +6,35 @@ using namespace std;
 
 int main() {
 //DECLARATION OF THE VARIABLES
-  Network network;
-  
-  double tstart;
-  double tstop;
-  double Iext;
+	Network network;
+
+	double tstart;
+	double tstop;
 
 //INITIALISATION OF tstart, tstop AND Iext  
-  cout << "Enter a time interval [tstart,tstop)." << endl;
-  cout << "tstart = " << flush;
-  cin >> tstart;
-  while(cin.fail()) {
-    cout << "Error, you have to enter a double." << endl;
-    cin.clear();
-    cin.ignore(256,'\n');
-    cout << "tstart = " << flush;
-    cin >> tstart;
-  }
-  
-  cout << "tstop = " << flush;
-  cin >> tstop;
-  while(cin.fail()) {
-    cout << "Error, you have to enter a double." << endl;
-    cin.clear();
-    cin.ignore(256,'\n');
-    cout << "tstop = " << flush;
-    cin >> tstop;
-  }
-  
-  cout << "Enter the external current." << endl;
-  cout << "Iext = " << flush;
-  cin >> Iext;
-  while(cin.fail()) {
+	cout << "Enter a time interval [tstart,tstop]." << endl;
+	cout << "tstart = " << flush;
+	cin >> tstart;
+	while(cin.fail()) {
 	cout << "Error, you have to enter a double." << endl;
 	cin.clear();
 	cin.ignore(256,'\n');
-	cout << "Iext = " << flush;
-	cin >> Iext;
-  }
+	cout << "tstart = " << flush;
+	cin >> tstart;
+	}
+
+	cout << "tstop = " << flush;
+	cin >> tstop;
+	while(cin.fail()) {
+	cout << "Error, you have to enter a double." << endl;
+	cin.clear();
+	cin.ignore(256,'\n');
+	cout << "tstop = " << flush;
+	cin >> tstop;
+	}
   
-//SIMULATION FROM tstart TO tstop
-  network.addNeuron();
-  network.addNeuron();
-  network.simulationLoop(tstart, tstop, Iext);
+//SIMULATION OF THE NETWORK FROM tstart TO tstop
+	network.simulationLoop(tstart, tstop);		
   
-  return 0;
+	return 0;
 }
