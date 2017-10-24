@@ -3,7 +3,7 @@
 #include "neuron.hpp"
 #include <vector>
 
-class Neuron; //pre-declaration
+class Neuron; ///pre-declaration
 
 class Network {
 	private:
@@ -13,23 +13,23 @@ class Network {
 		double clock_;
 		
 	public:
-//CONSTRUCTOR
+///CONSTRUCTOR
 		Network();
 		
-//GETTER AND SETTER FOR clock_
+///GETTER AND SETTER FOR clock_
 		double getClock() const;
 		void setClock(double clock);
 		
-//DISTRIBUTION OF THE CONNECTIONS BETWEEN ALL THE EXCITATORY AND INHIBITORY NEURONS
+///DISTRIBUTION OF THE CONNECTIONS BETWEEN ALL THE EXCITATORY AND INHIBITORY NEURONS
 		void connexions();
 				
-//SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
+///SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
 		void simulationLoop(double tstart, double tstop);
 
-//DESTROY ALL THE NEURONS OF THE NETWORK
+///DESTROY ALL THE NEURONS OF THE NETWORK
 		void destructionNeurons();
 		
-//DESTRUCTOR	
+///DESTRUCTOR	
 		~Network();
 	
 };

@@ -5,13 +5,13 @@
 using namespace std;
 
 int main() {
-//DECLARATION OF THE VARIABLES
+///DECLARATION OF THE VARIABLES
 	Network network;
 
 	double tstart;
 	double tstop;
 
-//INITIALISATION OF tstart, tstop AND Iext  
+///INITIALISATION OF tstart, tstop 
 	cout << "Enter a time interval [tstart,tstop]." << endl;
 	cout << "tstart = " << flush;
 	cin >> tstart;
@@ -33,7 +33,7 @@ int main() {
 	cin >> tstop;
 	}
   
-//SIMULATION OF THE NETWORK FROM tstart TO tstop
+///SIMULATION OF THE NETWORK FROM tstart TO tstop
 	network.simulationLoop(tstart, tstop);		
   
 	return 0;

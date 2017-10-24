@@ -6,7 +6,7 @@
 #include <random>
 using namespace std;
 
-//CONSTRUCTORs
+///CONSTRUCTORS
 Neuron::Neuron() 
 : id_(0), J_(0.1), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
 {}
@@ -15,7 +15,7 @@ Neuron::Neuron(int id, double J)
 : id_(id), J_(J), potential_(0.0), nbSpikes_(0), isRefractory_(0), time_(0.0), Iext_(0.0), buffer_(16, 0)
 {}
 
-//GETTERS
+///GETTERS
 double Neuron::getPotential() const {
   return potential_;
 }
@@ -38,7 +38,7 @@ double Neuron::getJ() const {
 	return J_;
 }
 
-//SETTERS
+///SETTERS
 void Neuron::setId(int id) {
 	id_ = id;
 }
@@ -61,20 +61,20 @@ void Neuron::setBuffer(int position, double J) {
 	buffer_[position] += J;
 }
 
-//UPDATE OF THE NEURON STATE AT TIME t+T
+///UPDATE OF THE NEURON STATE AT TIME t+T
 void Neuron::updatePotential() {
     double R(tau_ / C_);
     int a((time_/h_));
     
 	random_device rd;
 	mt19937 gen(rd());
-	poisson_distribution<> dis(0.2); //v_thr*J*h*C_E=0.02*0.1*0.1*1000=0.2
+	poisson_distribution<> dis(0.2); ///v_thr*J*h*C_E=0.02*0.1*0.1*1000=0.2
     
     potential_ = exp(-h_/tau_)*potential_ + Iext_*R*(1-exp(-h_/tau_)) + buffer_[a % 16] + dis(gen);
     buffer_[a % 16] = 0.0;
 }
   
-//RETURN TRUE IF THE NEURON IS SPIKING
+///RETURN TRUE IF THE NEURON IS SPIKING
 bool Neuron::isSpiking() {
 	if(potential_ > Vth_) {
 		return true;
@@ -83,7 +83,7 @@ bool Neuron::isSpiking() {
 	}
 }
 
-//SIMULATION LOOP OF THE NEURON
+///SIMULATION LOOP OF THE NEURON
 void Neuron::simulationLoop(int nbSimulationLoops) {
 	for(int i(0); i < nbSimulationLoops; ++i) {
 		if(isRefractory_ > 0) {
@@ -101,7 +101,7 @@ void Neuron::simulationLoop(int nbSimulationLoops) {
 	}
 }
 
-//STORAGE OF SPIKE TIMES IN A FILE
+///STORAGE OF SPIKE TIMES IN A FILE
 void Neuron::storeSpike() {
 	ofstream sortie;
 	sortie.open("data.txt", ios::out|ios::app);
@@ -114,6 +114,6 @@ void Neuron::storeSpike() {
 	sortie.close();
 }
   
-//DESTRUCTOR
+///DESTRUCTOR
 Neuron::~Neuron() {
 }

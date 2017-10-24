@@ -13,7 +13,7 @@ class Neuron {
 		double Iext_;
 		std::vector<double> buffer_;
 	
-//NEURON PARAMETERS		
+///NEURON PARAMETERS		
 		const double n_=1.0;
 		const double h_=0.1;
 		const double C_=1.0;
@@ -24,11 +24,11 @@ class Neuron {
 		double delay_=1.5;
 		
 	public:
-//CONSTRUCTORS
+///CONSTRUCTORS
 		Neuron();
 		Neuron(int id, double J);
 		
-//GETTERS
+///GETTERS
 		double getPotential() const;
 		int getNbSpikes() const;
 		double getTime() const;
@@ -37,7 +37,7 @@ class Neuron {
 		double getH() const;
 		double getJ() const;
 
-//SETTERS	
+///SETTERS	
 		void setId(int id);
 		void setPotential(double potential);
 		void setNbSpikes(int nbSpikes);
@@ -46,19 +46,19 @@ class Neuron {
 		void setJ(double J);
 		void setBuffer(int position, double J);
 		
-//UPDATE OF THE NEURON STATE AT TIME t+T
+///UPDATE OF THE NEURON STATE AT TIME t+T
 		void updatePotential();
 		
-//RETURN TRUE IF THE NEURON IS SPIKING
+///RETURN TRUE IF THE NEURON IS SPIKING
 		bool isSpiking();
 		
-//SIMULATION LOOP OF THE NEURON
+///SIMULATION LOOP OF THE NEURON
 		 void simulationLoop(int nbSimulationLoops);
 		
-//STORAGE OF SPIKE TIMES IN A FILE
+///STORAGE OF SPIKE TIMES IN A FILE
 		void storeSpike();
 				
-//DESTRUCTOR
+///DESTRUCTOR
 		~Neuron();
 		
 };

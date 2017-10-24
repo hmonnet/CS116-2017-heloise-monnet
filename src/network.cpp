@@ -6,7 +6,7 @@
 #include <cmath>
 using namespace std;
 
-//CONSTRUCTOR
+///CONSTRUCTOR
 Network::Network()
 : connexions_(12500, vector<int>(12500, 0)), clock_(0.0)
 {
@@ -18,7 +18,7 @@ Network::Network()
 	}
 }
 		
-//GETTER AND SETTER FOR clock_		
+///GETTER AND SETTER FOR clock_		
 double Network::getClock() const {
   return clock_;
 }
@@ -27,7 +27,7 @@ void Network::setClock(double clock) {
   clock_ = clock;
 }
 
-//DISTRIBUTION OF THE CONNECTIONS BETWEEN ALL THE EXCITATORY AND INHIBITORY NEURONS
+///DISTRIBUTION OF THE CONNECTIONS BETWEEN ALL THE EXCITATORY AND INHIBITORY NEURONS
 void Network::connexions() {
 	random_device rd;
 	std::mt19937 gen(rd());
@@ -56,7 +56,7 @@ void Network::connexions() {
 }
 
 			
-//SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
+///SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
 void Network::simulationLoop(double tstart, double tstop) {
 	clock_ = tstart;
 	
@@ -112,7 +112,7 @@ void Network::simulationLoop(double tstart, double tstop) {
 	}
 }
 
-//DESTROY ALL THE NEURONS OF THE NETWORK
+///DESTROY ALL THE NEURONS OF THE NETWORK
 void Network::destructionNeurons()
 {
 	for(auto& neuron: excitatoryNeurons_) {
@@ -129,7 +129,7 @@ void Network::destructionNeurons()
     }
 }				
 				
-//DESTRUCTOR	
+///DESTRUCTOR	
 Network::~Network() {
 	destructionNeurons();
 }
