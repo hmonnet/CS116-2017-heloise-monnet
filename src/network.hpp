@@ -11,6 +11,7 @@ class Network {
 		std::vector <Neuron*> inhibitoryNeurons_;
 		std::vector<std::vector<int>> connexions_;
 		double clock_;
+		int nbSpikes_;
 		
 	public:
 ///CONSTRUCTOR
@@ -25,6 +26,9 @@ class Network {
 				
 ///SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
 		void simulationLoop(double tstart, double tstop);
+		
+///STORE THE NUMBER OF SPIKES AT EACH TIME T
+		void storeNbSpikes();
 
 ///DESTROY ALL THE NEURONS OF THE NETWORK
 		void destructionNeurons();

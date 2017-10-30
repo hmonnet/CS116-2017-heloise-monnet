@@ -13,8 +13,7 @@ class Neuron {
 		double Iext_;
 		std::vector<double> buffer_;
 	
-///NEURON PARAMETERS		
-		const double n_=1.0;
+///NEURON PARAMETERS
 		const double h_=0.1;
 		const double C_=1.0;
 		const double tau_=20.0;
@@ -33,7 +32,6 @@ class Neuron {
 		int getNbSpikes() const;
 		double getTime() const;
 		double getDelay() const;
-		double getN() const;
 		double getH() const;
 		double getJ() const;
 

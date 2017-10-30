@@ -28,9 +28,6 @@ double Neuron::getTime() const {
 double Neuron::getDelay() const {
 	return delay_;
 }
-double Neuron::getN() const {
-	return n_;
-}
 double Neuron::getH() const {
 	return h_;
 }
@@ -68,19 +65,15 @@ void Neuron::updatePotential() {
     
 	random_device rd;
 	mt19937 gen(rd());
-	poisson_distribution<> dis(0.2); ///v_thr*J*h*C_E=0.02*0.1*0.1*1000=0.2
+	poisson_distribution<> dis(2); ///v_ext*h=20/0.1=2
     
-    potential_ = exp(-h_/tau_)*potential_ + Iext_*R*(1-exp(-h_/tau_)) + buffer_[a % 16] + dis(gen);
+    potential_ = exp(-h_/tau_)*potential_ + Iext_*R*(1-exp(-h_/tau_)) + buffer_[a % 16] + 0.1*dis(gen); ///J_ext=J_e=0.1
     buffer_[a % 16] = 0.0;
 }
   
 ///RETURN TRUE IF THE NEURON IS SPIKING
 bool Neuron::isSpiking() {
-	if(potential_ > Vth_) {
-		return true;
-	} else {
-		return false;
-	}
+	return (potential_ > Vth_);
 }
 
 ///SIMULATION LOOP OF THE NEURON
@@ -94,22 +87,21 @@ void Neuron::simulationLoop(int nbSimulationLoops) {
 		  if(isSpiking()) {
 			nbSpikes_ += 1;
 			storeSpike();
-			isRefractory_ = (tauref_ / (n_*h_));
+			isRefractory_ = (tauref_ / h_);
 		  }
 		}
-		time_ += n_*h_;
+		time_ += h_;
 	}
 }
 
 ///STORAGE OF SPIKE TIMES IN A FILE
 void Neuron::storeSpike() {
 	ofstream sortie;
-	sortie.open("data.txt", ios::out|ios::app);
+	sortie.open("spikes.txt", ios::out|ios::app);
 	if(sortie.fail()) {
-		cout << "Error. Impossible to write in fichier.txt." << endl;
+		cerr << "Error. Impossible to write in fichier.txt." << endl;
 	} else {
-		sortie << "Time: " << time_ << "  Potential neuron " << id_ << " : " << potential_ << endl;
-		cout << "A spike occured at time " << time_ << ", the neuron " << id_ << " enters in a refractory period (potential: 0)." << endl;
+		sortie << time_ << "	" << id_ << endl;
 	}
 	sortie.close();
 }
