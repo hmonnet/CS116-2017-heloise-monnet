@@ -1,8 +1,0 @@
-#!/bin/bash
-
-rm spikes.txt
-rm nbSpikes.txt
-
-./neuron
-
-python graph.py
