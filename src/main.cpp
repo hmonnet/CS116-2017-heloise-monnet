@@ -1,18 +1,18 @@
 #include "network.hpp"
 #include "neuron.hpp"
 #include <iostream>
-
 using namespace std;
 
-int main() {
-///DECLARATION OF THE VARIABLES
-	Network network;
+/*! \file */
 
+int main() {
+
+//INITIALIZATION OF tstart AND tstop 
+/// 1) tstart and tstop are asked to the user
 	double tstart;
 	double tstop;
-
-///INITIALISATION OF tstart, tstop 
-	cout << "Enter a time interval [tstart,tstop]." << endl;
+	
+	cout << "Enter a time interval [tstart,tstop] for the simulation." << endl;
 	cout << "tstart = " << flush;
 	cin >> tstart;
 	while(cin.fail()) {
@@ -33,7 +33,9 @@ int main() {
 	cin >> tstop;
 	}
   
-///SIMULATION OF THE NETWORK FROM tstart TO tstop
+//SIMULATION OF THE NETWORK FROM tstart TO tstop
+/// 2) initialization and simulation of the network from tstart to tstop
+	Network network;
 	network.simulationLoop(tstart, tstop);		
   
 	return 0;

@@ -6,134 +6,102 @@
 #include <cmath>
 using namespace std;
 
-///CONSTRUCTOR
+//CONSTRUCTOR
 Network::Network()
 : connexions_(12500, vector<int>(1250, 0)), clock_(0.0), nbSpikes_(0)
 {
-	for(int i(0); i < 10000; ++i) {
-		excitatoryNeurons_.push_back(new Neuron(i, 0.1));
+	for(int i(0); i < 12500; ++i) {
+		neurons_.push_back(new Neuron(i));
 	}
-	for(int i(0); i < 2500; ++i) {
-		inhibitoryNeurons_.push_back(new Neuron(i+10000, -0.5));
-	}
-}
-		
-///GETTER AND SETTER FOR clock_		
-double Network::getClock() const {
-  return clock_;
-}
-  
-void Network::setClock(double clock) {
-  clock_ = clock;
+	cout << "The network has been created." << endl;
 }
 
-///DISTRIBUTION OF THE CONNECTIONS BETWEEN ALL THE EXCITATORY AND INHIBITORY NEURONS
+
+//INITIALIZATION OF THE CONNECTIONS
 void Network::connexions() {
 	random_device rd;
 	std::mt19937 gen(rd());
 	
-	for(int neuron(0); neuron < 12500; ++neuron) {
+	for(int n(0); n < 12500; ++n) {
 		for(int excTarget(0); excTarget < 1000; ++excTarget) {
 			uniform_int_distribution<> excDis (0, 9999);
-			connexions_[neuron][excTarget] = excDis(gen);
+			connexions_[n][excTarget] = excDis(gen);
 		}
 		
 		for(int inhTarget(1000); inhTarget < 1250; ++inhTarget) {
 			uniform_int_distribution<> inhDis (10000, 12499);
-			connexions_[neuron][inhTarget] = inhDis(gen);
+			connexions_[n][inhTarget] = inhDis(gen);
 		}
 	}
+	cout << "Connexions between neurons have been done." << endl;
 }
 
 			
-///SIMULATION LOOP FOR ALL THE EXCITATORY AND INHIBITORY NEURONS IN TAKING THE CONNECTION BETWEEN THEM AND THE DELAY INTO ACCOUNT
+//SIMULATION LOOP OF THE NETWORK
 void Network::simulationLoop(double tstart, double tstop) {
 	clock_ = tstart;
 	
-	for(auto neuron: excitatoryNeurons_) {
-		neuron->setTime(tstart);
-	}
-	for(auto neuron: inhibitoryNeurons_) {
+	for(auto neuron: neurons_) {
 		neuron->setTime(tstart);
 	}
 	
 	connexions();
-
-
+	
+	cout << "Beginning of the simulation" << endl;
+	
+    
+	random_device rd;
+	mt19937 gen(rd());
+	
+	ofstream storeSpikes;
+	storeSpikes.open("spikes.txt", ios::out|ios::app);
+	ofstream storeNbSpikes;
+	storeNbSpikes.open("nbSpikes.txt", ios::out|ios::app);
+	
 	while(clock_ < tstop) {
-		int a(floor((clock_ + 1.5)/0.1));
+		int a((clock_ + 1.5)/0.1);
+		int position(a % 16);
 		
-		for(int neuron(0); neuron < 10000; ++neuron) {
-			excitatoryNeurons_[neuron]->simulationLoop(1);
+		for(int n(0); n < 10000; ++n) {
+			poisson_distribution<> dis(2); //v_ext*h=20*0.1=2
+			neurons_[n]->simulationLoop(1, dis(gen), 0.0);
 			
-			if(excitatoryNeurons_[neuron]->isSpiking()) {
+			if(neurons_[n]->isSpiking()) {
+				storeSpikes << clock_ << "	" << n << endl;
 				nbSpikes_ += 1;
-				for(int target(0); target < 1000; ++target) {
-					int targetId(connexions_[neuron][target]);
-					excitatoryNeurons_[targetId]->setBuffer(a % 16, 0.1);
-				}
-				for(int target(1000); target < 1250; ++target) {
-					int targetId(connexions_[neuron][target]);
-					inhibitoryNeurons_[targetId-10000]->setBuffer(a % 16, 0.1);
+				for(int target(0); target < 1250; ++target) {
+					neurons_[connexions_[n][target]]->setBuffer(position, 0.1);
 				}
 			}
 		}
-
-		for(int neuron(10000); neuron < 12500; ++neuron) {
-			inhibitoryNeurons_[neuron-10000]->simulationLoop(1);
+		for(int n(10000); n < 12500; ++n) {
+			poisson_distribution<> dis(2); //v_ext*h=20*0.1=2
+			neurons_[n]->simulationLoop(1, dis(gen), 0.0);
 			
-			if(inhibitoryNeurons_[neuron-10000]->isSpiking()) {
+			if(neurons_[n]->isSpiking()) {
 				nbSpikes_ += 1;
-				for(int target(0); target < 1000; ++target) {
-					int targetId(connexions_[neuron][target]);
-					excitatoryNeurons_[targetId]->setBuffer(a % 16, -0.5);
-				}
-				for(int target(1000); target < 1250; ++target) {
-					int targetId(connexions_[neuron][target]);
-					inhibitoryNeurons_[targetId-10000]->setBuffer(a % 16, -0.5);
+				for(int target(0); target < 1250; ++target) {
+					neurons_[connexions_[n][target]]->setBuffer(position, -0.5);
 				}
 			}
-		 }
-		
-		if(nbSpikes_ > 0) {
-			storeNbSpikes();
-			nbSpikes_ = 0;
 		}
 		
+		storeNbSpikes << clock_ << "	" << nbSpikes_ << endl;
+		nbSpikes_ = 0;
 		clock_ += 0.1;
 	}
+	storeSpikes.close();
+	storeNbSpikes.close();
+	
+	cout << "End of the simulation" << endl;
 }
-
-///STORE THE NUMBER OF SPIKES AT EACH TIME T
-void Network::storeNbSpikes() {
-	ofstream sortie;
-	sortie.open("nbSpikes.txt", ios::out|ios::app);
-	if(sortie.fail()) {
-		cerr << "Error. Impossible to write in fichier.txt." << endl;
-	} else {
-		sortie << clock_ << "	" << nbSpikes_ << endl;
-	}
-	sortie.close();
-}
-
-///DESTROY ALL THE NEURONS OF THE NETWORK
-void Network::destructionNeurons()
-{
-	for(auto& neuron: excitatoryNeurons_) {
-        if(neuron != nullptr) {
-            delete neuron;
-            neuron = nullptr;
-        }
-    }
-    for(auto& neuron: inhibitoryNeurons_) {
-        if(neuron != nullptr) {
-            delete neuron;
-            neuron = nullptr;
-        }
-    }
-}				
+		
 				
-///DESTRUCTOR	
+//DESTRUCTOR	
 Network::~Network() {
-	destructionNeurons();
+	for(auto& neuron: neurons_) {
+		delete neuron;
+		neuron = nullptr;
+    }
+    cout << "The network has been destroyed." << endl;
 }

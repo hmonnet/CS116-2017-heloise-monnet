@@ -1,4 +1,4 @@
-/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/neuron.dir
-/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/unit_test.dir
-/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/gtest/CMakeFiles/gtest.dir
-/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/gtest/CMakeFiles/gtest_main.dir
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/neuron.dir
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/gtest/CMakeFiles/gtest.dir
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/gtest/CMakeFiles/gtest_main.dir
+/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/unittest.dir

@@ -47,10 +47,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src
+CMAKE_SOURCE_DIR = /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src
+CMAKE_BINARY_DIR = /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/neuron.dir
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/
 CMakeFiles/neuron.dir/all:
 	$(MAKE) -f CMakeFiles/neuron.dir/build.make CMakeFiles/neuron.dir/depend
 	$(MAKE) -f CMakeFiles/neuron.dir/build.make CMakeFiles/neuron.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles  3 4 5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles  3 4 5
 	@echo "Built target neuron"
 .PHONY : CMakeFiles/neuron.dir/all
 
@@ -69,9 +69,9 @@ all: CMakeFiles/neuron.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/neuron.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/neuron.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 0
 .PHONY : CMakeFiles/neuron.dir/rule
 
 # Convenience name for target.
@@ -88,39 +88,39 @@ clean: CMakeFiles/neuron.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/unit_test.dir
+# Target rules for target CMakeFiles/unittest.dir
 
 # All Build rule for target.
-CMakeFiles/unit_test.dir/all: gtest/CMakeFiles/gtest.dir/all
-CMakeFiles/unit_test.dir/all: gtest/CMakeFiles/gtest_main.dir/all
-	$(MAKE) -f CMakeFiles/unit_test.dir/build.make CMakeFiles/unit_test.dir/depend
-	$(MAKE) -f CMakeFiles/unit_test.dir/build.make CMakeFiles/unit_test.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles  6 7
-	@echo "Built target unit_test"
-.PHONY : CMakeFiles/unit_test.dir/all
+CMakeFiles/unittest.dir/all: gtest/CMakeFiles/gtest_main.dir/all
+CMakeFiles/unittest.dir/all: gtest/CMakeFiles/gtest.dir/all
+	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/depend
+	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles  6 7
+	@echo "Built target unittest"
+.PHONY : CMakeFiles/unittest.dir/all
 
 # Include target in all.
-all: CMakeFiles/unit_test.dir/all
+all: CMakeFiles/unittest.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/unit_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/unit_test.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 0
-.PHONY : CMakeFiles/unit_test.dir/rule
+CMakeFiles/unittest.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/unittest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 0
+.PHONY : CMakeFiles/unittest.dir/rule
 
 # Convenience name for target.
-unit_test: CMakeFiles/unit_test.dir/rule
-.PHONY : unit_test
+unittest: CMakeFiles/unittest.dir/rule
+.PHONY : unittest
 
 # clean rule for target.
-CMakeFiles/unit_test.dir/clean:
-	$(MAKE) -f CMakeFiles/unit_test.dir/build.make CMakeFiles/unit_test.dir/clean
-.PHONY : CMakeFiles/unit_test.dir/clean
+CMakeFiles/unittest.dir/clean:
+	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/clean
+.PHONY : CMakeFiles/unittest.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/unit_test.dir/clean
+clean: CMakeFiles/unittest.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -147,7 +147,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles  1
 	@echo "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
@@ -157,9 +157,9 @@ all: gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 gtest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 0
 .PHONY : gtest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.
@@ -182,7 +182,7 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles  2
 	@echo "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 
@@ -192,9 +192,9 @@ all: gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 gtest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles 0
 .PHONY : gtest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.

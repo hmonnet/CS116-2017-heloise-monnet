@@ -1,23 +1,57 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/CMakeTmp
+Change Dir: /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet-copy/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTryCompileExec1676427217/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec1676427217.dir/build.make CMakeFiles/cmTryCompileExec1676427217.dir/build
-make[1]: Entering directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/CMakeTmp'
-/usr/local/bin/cmake -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec1676427217.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1676427217.dir/CheckSymbolExists.c.o   -c /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTryCompileExec1676427217
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1676427217.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTryCompileExec1676427217.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1676427217 -rdynamic 
-CMakeFiles/cmTryCompileExec1676427217.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTryCompileExec976716116/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec976716116.dir/build.make CMakeFiles/cmTryCompileExec976716116.dir/build
+make[1]: Entering directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet-copy/build/CMakeFiles/CMakeTmp'
+/usr/local/bin/cmake -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet-copy/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec976716116.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec976716116.dir/CheckSymbolExists.c.o   -c /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet-copy/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec976716116
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec976716116.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec976716116.dir/CheckSymbolExists.c.o  -o cmTryCompileExec976716116 -rdynamic 
+CMakeFiles/cmTryCompileExec976716116.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-make[1]: Leaving directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/CMakeTmp'
-make[1]: *** [cmTryCompileExec1676427217] Error 1
-make: *** [cmTryCompileExec1676427217/fast] Error 2
+make[1]: Leaving directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet-copy/build/CMakeFiles/CMakeTmp'
+make[1]: *** [cmTryCompileExec976716116] Error 1
+make: *** [cmTryCompileExec976716116/fast] Error 2
 
-File /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/src/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet-copy/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTryCompileExec3784948805/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3784948805.dir/build.make CMakeFiles/cmTryCompileExec3784948805.dir/build
+make[1]: Entering directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/CMakeTmp'
+/usr/local/bin/cmake -E cmake_progress_report /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3784948805.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3784948805.dir/CheckSymbolExists.c.o   -c /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec3784948805
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3784948805.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec3784948805.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3784948805 -rdynamic 
+CMakeFiles/cmTryCompileExec3784948805.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+make[1]: *** [cmTryCompileExec3784948805] Error 1
+make[1]: Leaving directory `/home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec3784948805/fast] Error 2
+
+File /home/INTRANET/hmonnet/myfiles/BA3/CS116-2017-heloise-monnet/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
